@@ -5,15 +5,14 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAgKBj4DL9tbM_HelAWwfWVMTu-4VUK0X8",
-  authDomain: "at-home-convenience.firebaseapp.com",
-  databaseURL:
-    "https://at-home-convenience-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "at-home-convenience",
-  storageBucket: "at-home-convenience.appspot.com",
-  messagingSenderId: "948813304022",
-  appId: "1:948813304022:web:8917ab26c6c15f8462b977",
-  measurementId: "G-6169JM9JRJ",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
