@@ -7,10 +7,7 @@ import React, { useEffect, useState } from "react";
 import {
   getFirestore,
   collection,
-  addDoc,
   getDocs,
-  getDoc,
-  setDoc,
   where,
   query,
 } from "firebase/firestore";
@@ -42,8 +39,6 @@ const ServiceProviders = () => {
 
     fetchServiceProviders();
   }, [activeStatus]);
-
-  console.log(serviceProviders);
 
   return (
     <>

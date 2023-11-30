@@ -3,10 +3,7 @@ import React, { useEffect, useState } from "react";
 import {
   getFirestore,
   collection,
-  addDoc,
   getDocs,
-  getDoc,
-  setDoc,
   where,
   query,
   updateDoc,
@@ -72,22 +69,17 @@ const ServiceProviderDetail = ({
   useEffect(() => {
     fetchData();
     fetchUserData();
-  }, [searchParams.id]);
+  }, [searchParams.id, fetchData, fetchUserData]);
 
   const handleClick = async (action: string) => {
-    console.log("clicked");
     const docId: string = searchParams.id;
     const status: string = action == "Accept" ? "Accepted" : "Rejected";
 
     try {
       const documentRef = doc(getFirestore(app), "service_provider", docId);
 
-      console.log("updating");
-
       await updateDoc(documentRef, {
         status: status,
-      }).then((response) => {
-        console.log(response);
       });
       fetchData();
       fetchUserData();
@@ -95,8 +87,6 @@ const ServiceProviderDetail = ({
       console.log(`error updating status: ${error}`);
     }
   };
-
-  console.log(data);
 
   return (
     <main className="flex bg-bg-gray">

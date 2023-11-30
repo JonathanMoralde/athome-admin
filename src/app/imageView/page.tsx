@@ -9,8 +9,6 @@ const ImageViewPage = ({
   };
 }) => {
   const { imageUrl } = searchParams;
-  console.log(imageUrl);
-  imageUrl;
   return (
     <div className="h-screen w-screen bg-bg-gray relative">
       {imageUrl && (

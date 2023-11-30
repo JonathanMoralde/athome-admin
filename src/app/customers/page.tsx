@@ -2,16 +2,7 @@
 import SectionTitle from "@/components/sectionTitle/section_title";
 import Sidebar from "@/components/sidebar/sidebar";
 import React, { useEffect, useState } from "react";
-import {
-  getFirestore,
-  collection,
-  addDoc,
-  getDocs,
-  getDoc,
-  setDoc,
-  where,
-  query,
-} from "firebase/firestore";
+import { getFirestore, collection, getDocs, query } from "firebase/firestore";
 import { app } from "@/app/config/firebase";
 
 const customers = () => {
@@ -36,8 +27,6 @@ const customers = () => {
 
     fetchCustomers();
   }, []);
-
-  console.log(data);
 
   return (
     <main className="flex bg-bg-gray">
