@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import {
   getFirestore,
   collection,
@@ -25,7 +25,7 @@ const ServiceProviderDetail = ({
   const [data, setData] = useState<any>(null);
   const [userData, setUserData] = useState<any>(null);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       const spDataRef = query(
         collection(getFirestore(app), "service_provider"),
@@ -44,8 +44,9 @@ const ServiceProviderDetail = ({
     } catch (error) {
       console.error("Error fetching service provider: ", error);
     }
-  };
-  const fetchUserData = async () => {
+  }, []);
+
+  const fetchUserData = useCallback(async () => {
     try {
       const spDataRef = query(
         collection(getFirestore(app), "users"),
@@ -64,20 +65,12 @@ const ServiceProviderDetail = ({
     } catch (error) {
       console.error("Error fetching user: ", error);
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchData();
     fetchUserData();
-  }, [
-    searchParams.id,
-    () => {
-      fetchData;
-    },
-    () => {
-      fetchUserData;
-    },
-  ]);
+  }, [searchParams.id]);
 
   const handleClick = async (action: string) => {
     const docId: string = searchParams.id;
