@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 export default function Home() {
   const { user, login } = useAuth();
-  console.log(user);
+
   const router = useRouter();
 
   const emailRef = useRef<HTMLInputElement>(null);
