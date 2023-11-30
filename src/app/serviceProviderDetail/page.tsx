@@ -69,7 +69,15 @@ const ServiceProviderDetail = ({
   useEffect(() => {
     fetchData();
     fetchUserData();
-  }, [searchParams.id, fetchData, fetchUserData]);
+  }, [
+    searchParams.id,
+    () => {
+      fetchData;
+    },
+    () => {
+      fetchUserData;
+    },
+  ]);
 
   const handleClick = async (action: string) => {
     const docId: string = searchParams.id;

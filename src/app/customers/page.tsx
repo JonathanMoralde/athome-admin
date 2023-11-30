@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { getFirestore, collection, getDocs, query } from "firebase/firestore";
 import { app } from "@/app/config/firebase";
 
-const customers = () => {
+const Customers = () => {
   const [data, setData] = useState<any[]>([]);
 
   useEffect(() => {
@@ -68,4 +68,4 @@ const customers = () => {
   );
 };
 
-export default customers;
+export default Customers;
