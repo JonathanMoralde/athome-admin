@@ -9,7 +9,7 @@ import {
   updateDoc,
   doc,
 } from "firebase/firestore";
-import { app } from "@/app/config/firebase";
+import { app, db } from "@/app/config/firebase";
 import Sidebar from "@/components/sidebar/sidebar";
 import SectionTitle from "@/components/sectionTitle/section_title";
 import Image from "next/image";
@@ -28,7 +28,7 @@ const ServiceProviderDetail = ({
   const fetchData = useCallback(async () => {
     try {
       const spDataRef = query(
-        collection(getFirestore(app), "service_provider"),
+        collection(db, "service_provider"), //getFirestore(app)
         where("uid", "==", searchParams.id)
       );
 
@@ -49,7 +49,7 @@ const ServiceProviderDetail = ({
   const fetchUserData = useCallback(async () => {
     try {
       const spDataRef = query(
-        collection(getFirestore(app), "users"),
+        collection(db, "users"), //getFirestore(app)
         where("uid", "==", searchParams.id)
       );
 
@@ -77,7 +77,7 @@ const ServiceProviderDetail = ({
     const status: string = action == "Accept" ? "Accepted" : "Rejected";
 
     try {
-      const documentRef = doc(getFirestore(app), "service_provider", docId);
+      const documentRef = doc(db, "service_provider", docId); //getFirestore(app)
 
       await updateDoc(documentRef, {
         status: status,

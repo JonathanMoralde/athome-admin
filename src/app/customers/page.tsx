@@ -3,7 +3,7 @@ import SectionTitle from "@/components/sectionTitle/section_title";
 import Sidebar from "@/components/sidebar/sidebar";
 import React, { useEffect, useState } from "react";
 import { getFirestore, collection, getDocs, query } from "firebase/firestore";
-import { app } from "@/app/config/firebase";
+import { app, db } from "@/app/config/firebase";
 
 const Customers = () => {
   const [data, setData] = useState<any[]>([]);
@@ -11,7 +11,7 @@ const Customers = () => {
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
-        const customersRef = query(collection(getFirestore(app), "users"));
+        const customersRef = query(collection(db, "users")); //getFirestore(app)
 
         const querySnapshot = await getDocs(customersRef);
 

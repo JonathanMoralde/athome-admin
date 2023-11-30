@@ -11,7 +11,7 @@ import {
   where,
   query,
 } from "firebase/firestore";
-import { app } from "@/app/config/firebase";
+import { app, db } from "@/app/config/firebase";
 
 const ServiceProviders = () => {
   const [activeStatus, setActiveStatus] = useState<string>("Pending");
@@ -21,7 +21,7 @@ const ServiceProviders = () => {
     const fetchServiceProviders = async () => {
       try {
         const serviceProvidersRef = query(
-          collection(getFirestore(app), "service_provider"),
+          collection(db, "service_provider"), //getFireStore(app)
           where("status", "==", activeStatus)
         );
 

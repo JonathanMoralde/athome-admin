@@ -3,6 +3,7 @@
 // TODO MOVE THE API KEY AND AUTH DOMAIN IN ENV
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { initializeFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -17,7 +18,9 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
 const auth = getAuth(app);
+const db = initializeFirestore(app, {
+  experimentalForceLongPolling: true,
+});
 
-export { app, auth };
+export { app, auth, db };
