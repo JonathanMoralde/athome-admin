@@ -89,6 +89,8 @@ const ServiceProviderDetail = ({
     }
   };
 
+  console.log(data);
+
   return (
     <main className="flex bg-bg-gray">
       <Sidebar />

@@ -125,7 +125,9 @@ const ServiceProviders = () => {
                     {provider.service_provider_name}
                   </p>
                   <p className="border-s border-b border-black py-2">
-                    {provider.service_address}
+                    {provider.service_address != ""
+                      ? provider.service_address
+                      : "N/A"}
                   </p>
                   <p
                     className={`border-s border-b border-black py-2 ${
