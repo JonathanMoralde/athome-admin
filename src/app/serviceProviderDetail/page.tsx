@@ -145,7 +145,9 @@ const ServiceProviderDetail = ({
                 <div>
                   <p>{data.service_provider_name}</p>
                   <p>{data.contact_num}</p>
-                  <p>{data.service_address}</p>
+                  <p>
+                    {data.service_address !== "" ? data.service_address : "N/A"}
+                  </p>
                 </div>
               )}
             </div>

@@ -70,16 +70,12 @@ export default function Home() {
                 ref={emailRef}
                 className="w-3/4 border border-black rounded mb-4 p-3"
                 type="text"
-                name=""
-                id=""
                 placeholder="Email"
               />
               <input
                 ref={passwordRef}
                 className="w-3/4 border border-black rounded mb-10 p-3"
                 type="password"
-                name=""
-                id=""
                 placeholder="Password"
               />
               <button
