@@ -27,6 +27,7 @@ const ServiceProviderDetail = ({
 
   const fetchData = useCallback(async () => {
     try {
+      console.log("30: search params before query", searchParams.id);
       const spDataRef = query(
         collection(db, "service_provider"), //getFirestore(app)
         where("uid", "==", searchParams.id)
@@ -48,6 +49,8 @@ const ServiceProviderDetail = ({
 
   const fetchUserData = useCallback(async () => {
     try {
+      console.log("52: search params before query", searchParams.id);
+
       const spDataRef = query(
         collection(db, "users"), //getFirestore(app)
         where("uid", "==", searchParams.id)
