@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState, useCallback } from "react";
+import { useSearchParams } from "next/navigation";
 import {
   getFirestore,
   collection,
@@ -15,22 +16,20 @@ import SectionTitle from "@/components/sectionTitle/section_title";
 import Image from "next/image";
 import Link from "next/link";
 
-const ServiceProviderDetail = ({
-  searchParams,
-}: {
-  searchParams: {
-    id: string;
-  };
-}) => {
+const ServiceProviderDetail = () => {
+  const searchParams = useSearchParams();
+
+  const idString = searchParams.get("id");
+
   const [data, setData] = useState<any>(null);
   const [userData, setUserData] = useState<any>(null);
 
   const fetchData = useCallback(async () => {
     try {
-      console.log("30: search params before query", searchParams.id);
+      console.log("30: search params before query", idString);
       const spDataRef = query(
         collection(db, "service_provider"), //getFirestore(app)
-        where("uid", "==", searchParams.id)
+        where("uid", "==", idString)
       );
 
       const querySnapshot = await getDocs(spDataRef);
@@ -49,11 +48,11 @@ const ServiceProviderDetail = ({
 
   const fetchUserData = useCallback(async () => {
     try {
-      console.log("52: search params before query", searchParams.id);
+      console.log("52: search params before query", idString);
 
       const spDataRef = query(
         collection(db, "users"), //getFirestore(app)
-        where("uid", "==", searchParams.id)
+        where("uid", "==", idString)
       );
 
       const querySnapshot = await getDocs(spDataRef);
@@ -73,10 +72,10 @@ const ServiceProviderDetail = ({
   useEffect(() => {
     fetchData();
     fetchUserData();
-  }, [searchParams.id]);
+  }, [idString]);
 
   const handleClick = async (action: string) => {
-    const docId: string = searchParams.id;
+    const docId: string = idString!;
     const status: string = action == "Accept" ? "Accepted" : "Rejected";
 
     try {
