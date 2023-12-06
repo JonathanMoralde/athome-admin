@@ -7,6 +7,7 @@ import { app, db } from "@/app/config/firebase";
 
 const Customers = () => {
   const [data, setData] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchCustomers = async () => {
@@ -20,6 +21,7 @@ const Customers = () => {
           ...doc.data(),
         }));
         setData(data);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching service providers: ", error);
       }
@@ -62,6 +64,8 @@ const Customers = () => {
               </p>
             </div>
           ))}
+
+          {loading ? <h3 className="text-center mt-5">Loading...</h3> : ""}
         </article>
       </section>
     </main>

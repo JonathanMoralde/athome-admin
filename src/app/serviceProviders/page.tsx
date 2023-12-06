@@ -16,9 +16,12 @@ import { app, db } from "@/app/config/firebase";
 const ServiceProviders = () => {
   const [activeStatus, setActiveStatus] = useState<string>("Pending");
   const [serviceProviders, setServiceProviders] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchServiceProviders = async () => {
+      setServiceProviders([]);
+      setLoading(true);
       try {
         const serviceProvidersRef = query(
           collection(db, "service_provider"), //getFireStore(app)
@@ -32,6 +35,7 @@ const ServiceProviders = () => {
           ...doc.data(),
         }));
         setServiceProviders(data);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching service providers: ", error);
       }
@@ -91,36 +95,17 @@ const ServiceProviders = () => {
 
             {/* table list */}
             <div className="mt-5 text-center">
-              <div
-                className={`grid  ${
-                  activeStatus != "Pending" ? "grid-cols-3" : "grid-cols-4"
-                }`}
-              >
+              <div className={`grid  grid-cols-4`}>
                 <h3 className="border border-e-0 border-black py-2">Name</h3>
                 <h3 className="border border-e-0 border-black py-2">Address</h3>
-                <h3
-                  className={`border  ${
-                    activeStatus != "Pending" ? "" : "border-e-0"
-                  } border-black py-2`}
-                >
+                <h3 className={`border  border-e-0 border-black py-2`}>
                   Contact Number
                 </h3>
-                <h3
-                  className={`border border-black py-2 ${
-                    activeStatus != "Pending" ? "hidden" : ""
-                  }`}
-                >
-                  Action
-                </h3>
+                <h3 className={`border border-black py-2 `}>Action</h3>
               </div>
 
               {serviceProviders.map((provider) => (
-                <div
-                  className={`grid ${
-                    activeStatus != "Pending" ? "grid-cols-3" : "grid-cols-4"
-                  } `}
-                  key={provider.id}
-                >
+                <div className={`grid grid-cols-4 `} key={provider.id}>
                   <p className="border-s border-b border-black py-2">
                     {provider.service_provider_name}
                   </p>
@@ -129,18 +114,10 @@ const ServiceProviders = () => {
                       ? provider.service_address
                       : "N/A"}
                   </p>
-                  <p
-                    className={`border-s border-b border-black py-2 ${
-                      activeStatus != "Pending" ? "border-e" : ""
-                    }`}
-                  >
+                  <p className={`border-s border-b border-black py-2 `}>
                     {provider.contact_num}
                   </p>
-                  <p
-                    className={`border-s border-b border-e border-black py-2 ${
-                      activeStatus != "Pending" ? "hidden" : ""
-                    }`}
-                  >
+                  <p className={`border-s border-b border-e border-black py-2`}>
                     <Link
                       className="bg-athome-blue px-6 py-1 rounded-full text-white uppercase tracking-wider font-semibold "
                       href={{
@@ -156,7 +133,9 @@ const ServiceProviders = () => {
                 </div>
               ))}
 
-              {serviceProviders.length == 0 ? (
+              {loading === true ? (
+                <h3 className="mt-5">Loading...</h3>
+              ) : serviceProviders.length == 0 ? (
                 <h3 className="mt-5">No data</h3>
               ) : (
                 ""

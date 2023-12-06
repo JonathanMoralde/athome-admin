@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useAuth } from "@/app/context/AuthContext";
 import { useRouter } from "next/navigation";
+import { FaPowerOff } from "react-icons/fa";
 
 const Sidebar = () => {
   const { logout, active, setActive } = useAuth();
@@ -87,8 +88,24 @@ const Sidebar = () => {
                 <p>Customers</p>
               </Link>
             </li>
+            <li
+              className={`${active === "reports" ? "bg-filter-dark" : ""} py-2`}
+            >
+              <Link
+                href="/reports"
+                onClick={() => {
+                  setActive("reports");
+                }}
+              >
+                <p>Users Report</p>
+              </Link>
+            </li>
           </ul>
-          <button onClick={handleClick}>
+          <button
+            className="flex justify-center items-center"
+            onClick={handleClick}
+          >
+            <FaPowerOff className="me-4" />
             <span className="tracking-wider">Logout</span>
           </button>
         </div>
