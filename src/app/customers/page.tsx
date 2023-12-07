@@ -31,9 +31,9 @@ const Customers = () => {
   }, []);
 
   return (
-    <main className="flex bg-bg-gray">
+    <main className="flex bg-bg-gray h-screen">
       <Sidebar />
-      <section className="px-10 py-20 w-full">
+      <section className="px-10 py-20 w-full overflow-y-auto">
         <SectionTitle title="Customer" />
         <article className="mt-5">
           <div className="grid grid-cols-4 text-center">

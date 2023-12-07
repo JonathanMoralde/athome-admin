@@ -46,9 +46,9 @@ const ServiceProviders = () => {
 
   return (
     <>
-      <main className="flex bg-bg-gray w-screen">
+      <main className="flex bg-bg-gray w-screen h-screen">
         <Sidebar />
-        <section className="px-10 py-20 w-full">
+        <section className="px-10 py-20 w-full overflow-y-auto">
           <SectionTitle title="Service Providers" />
           <article className="mt-5">
             {/* status category */}
