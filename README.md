@@ -1,8 +1,12 @@
-This is the admin panel for At-Home Convenience App:
-https://github.com/enbernaldez/athomeconvenience.git
+# Home Service Locator App (Admin Panel)
 
-This system is for capstone project.
+This is the admin panel for Home Service Locator App:
+https://github.com/JonathanMoralde/athomeconvenience.git
 
-©At-Home Convenience group.
+## Features include:
 
-Site by Jonathan Moralde.
+Firebase Authentication
+
+Service Providers management
+
+Users Report
